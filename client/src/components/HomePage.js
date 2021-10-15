@@ -1,5 +1,6 @@
 import Navbar from "./Navbar"
 import AfterNav from "./AfterNav"
+import Footer from "./Footer"
 
 
 export default function HomePage(){
@@ -8,6 +9,7 @@ export default function HomePage(){
         <div>
             <Navbar />
             <AfterNav />
+            <Footer />
         </div>
     )
 }

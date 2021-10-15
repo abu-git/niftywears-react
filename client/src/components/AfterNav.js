@@ -104,8 +104,17 @@ const ShowcaseIntro = styled('div')(({theme}) => ({
     }
 }))
 
+const useStyles = makeStyles({
+    gridcontainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center"
+    }
+})
+
 export default function AfterNav(){
     const { products } = useContext(CartContext)
+    const classes = useStyles()
     return(
         <>
             {/* Showcase Area */}
@@ -133,7 +142,7 @@ export default function AfterNav(){
                         <h2>Check our stock!</h2>
                     </StyledGridItem>
                 </StyledGridContainer>
-                <Grid container>
+                <Grid container className={classes.gridcontainer}>
                     <Grid item lg={4} md={6} sm={12} xs={12}>
                         <MenuItem product={products[0]} key={products[0].id} />   
                     </Grid>

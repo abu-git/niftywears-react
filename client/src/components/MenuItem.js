@@ -10,7 +10,7 @@ import { useState, useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 
 const StyledCardRoot = styled('div')(({theme}) => ({
-    maxWidth: 305,
+    maxWidth: 300,
     textAlign: "center",
     padding: 0,
     [theme.breakpoints.down('sm')]: {
@@ -51,16 +51,21 @@ const useStyles = makeStyles({
     },
     buttonhover: {
         '&:hover':{
-            transform: "scale(1.1)",
             backgroundColor: "#ffca68",
-            color: "black"
+            transform: "scale(1.1)",
+            //color: "black"
         }
+    },
+    h6: {
+        padding: "0",
+        margin: "0"
     }
 })
 
 const MenuItem = ({product}) => {
     const classes = useStyles()
     const { addCart } = useContext(CartContext)
+    const [open, setOpen] = useState(false)
     console.log(product)
     return(
         <>
@@ -78,6 +83,32 @@ const MenuItem = ({product}) => {
                         <Box className={classes.buttonmargin}>
                             <h3>{product.title}</h3>
                             <h3>${product.price}</h3>
+                            <Button
+                                onClick={() => {addCart(product.id); {setOpen(true)} }}
+                                variant="outlined"
+                                color="inherit"
+                                className={classes.buttonhover}
+                            >
+                                <h5 className={classes.h6}>Add to Cart</h5>
+                            </Button>
+                            <div>
+                                <Collapse in={open}>
+                                    <Alert
+                                        action={
+                                            <IconButton
+                                                aria-label="close"
+                                                color="inherit"
+                                                size="small"
+                                                onClick={() => {setOpen(false)}}
+                                            >
+                                                <Close fontSize="inherit" />
+                                            </IconButton>
+                                        }
+                                    >
+                                        {product.title}{" "}added to Cart
+                                    </Alert>
+                                </Collapse>
+                            </div>
                         </Box>
                     </CardActions>
                 </StyledCardRoot>
