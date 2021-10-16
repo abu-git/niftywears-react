@@ -1,8 +1,7 @@
 import { useState } from "react"
 import  { makeStyles } from '@mui/styles'
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
-import { DialogTitle, TextField, Box } from '@mui/material'
-import { set } from "mongoose"
+import { Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
+import { DialogTitle, TextField } from '@mui/material'
 
 const useStyles = makeStyles({
     loginsignup: {
@@ -95,6 +94,7 @@ export default function LoginSignup(){
                         type="email"
                         margin="dense"
                         variant="outlined"
+                        size="small"
                         fullWidth
                     />
                     <TextField 
@@ -103,6 +103,7 @@ export default function LoginSignup(){
                         type="password"
                         margin="dense"
                         variant="outlined"
+                        size="small"
                         fullWidth
                     />                   
                 </DialogContent>
@@ -122,9 +123,73 @@ export default function LoginSignup(){
                 <div className={classes.dialogColor}>
                     <DialogContent>
                         <DialogContentText>
-                            <p className={classes.p}>Sign Up and have your delivery information safely stored with us.</p>
+                            <p className={classes.p}>Sign Up to have your delivery info safely stored with us.</p>
                         </DialogContentText>
+                        <TextField 
+                            id="name"
+                            label="name"
+                            type="text"
+                            margin="dense"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField 
+                            id="phone"
+                            label="phone number"
+                            type="text"
+                            margin="dense"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField 
+                            id="address"
+                            label="delivery address"
+                            type="text"
+                            margin="dense"
+                            multiline
+                            rows={3}
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField
+                            id="email"
+                            label="email"
+                            type="email"
+                            margin="dense"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField 
+                            id="password"
+                            label="password"
+                            type="password"
+                            margin="dense"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField 
+                            id="password"
+                            label="confirm password"
+                            type="password"
+                            margin="dense"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                        />
                     </DialogContent>
+                    <DialogActions>
+                        <button onClick={handleSignupClose} className={classes.button}>
+                            <h4 className={classes.h4}>Cancel</h4>
+                        </button>
+                        <button className={classes.button}>
+                            <h4 className={classes.h4}>Sign Up</h4>
+                        </button>
+                    </DialogActions>
                 </div>
             </Dialog>
         </>

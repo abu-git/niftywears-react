@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext"
 import { Container, Grid } from '@mui/material'
 
 import { styled } from '@mui/material/styles'
-import  { makeStyles, withStyles } from '@mui/styles'
+import  { makeStyles } from '@mui/styles'
 
 import MenuItem from './MenuItem'
 
