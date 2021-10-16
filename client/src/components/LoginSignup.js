@@ -2,6 +2,7 @@ import { useState } from "react"
 import  { makeStyles } from '@mui/styles'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
 import { DialogTitle, TextField, Box } from '@mui/material'
+import { set } from "mongoose"
 
 const useStyles = makeStyles({
     loginsignup: {
@@ -38,6 +39,13 @@ const useStyles = makeStyles({
     h4: {
         padding: 0,
         margin: 0,
+    },
+    dialogColor: {
+        backgroundColor: "#ffca68"
+    },
+    p: {
+        fontSize: "1em",
+        color: "black"
     }
 })
 
@@ -55,16 +63,28 @@ export default function LoginSignup(){
         setOpenLogin(false)
     }
 
+    //Dialog Sign Up config
+    const [openSignup, setOpenSignup] = useState(false)
+
+    const handleSignupOpen = () => {
+        setOpenSignup(true)
+    }
+
+    const handleSignupClose = () => {
+        setOpenSignup(false)
+    }
+
     return(
         <>
             <nav className={classes.loginsignup}>
                 <h5 className={classes.linkeffects} onClick={handleLoginOpen}>Login</h5>
                 <h5 className={classes.divider}>|</h5>
-                <h5 className={classes.linkeffects}>Sign Up</h5>
+                <h5 className={classes.linkeffects} onClick={handleSignupOpen}>Sign Up</h5>
             </nav>
 
             {/* Login Dialog */}
             <Dialog open={openLogin} onClose={handleLoginClose}>
+                <div className={classes.dialogColor}>
                 <DialogTitle>
                     <h3>Login</h3>
                 </DialogTitle>
@@ -94,6 +114,18 @@ export default function LoginSignup(){
                         <h4 className={classes.h4}>Log In</h4>
                     </button>
                 </DialogActions>
+                </div>
+            </Dialog>
+
+            {/* Sign Up Dialog */}
+            <Dialog open={openSignup} onClose={handleSignupClose}>
+                <div className={classes.dialogColor}>
+                    <DialogContent>
+                        <DialogContentText>
+                            <p className={classes.p}>Sign Up and have your delivery information safely stored with us.</p>
+                        </DialogContentText>
+                    </DialogContent>
+                </div>
             </Dialog>
         </>
     )
