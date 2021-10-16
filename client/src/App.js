@@ -1,6 +1,6 @@
 import HomePage from "./components/HomePage"
 import  { makeStyles } from '@mui/styles'
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import CartContextProvider from "./context/CartContext"
 
 const useStyles = makeStyles({
@@ -20,7 +20,7 @@ function App() {
     <Router>
       <CartContextProvider>
         <div className={classes.root}>
-          <HomePage />
+          <Route exact path="/" component={HomePage} />
         </div>
       </CartContextProvider>
     </Router>

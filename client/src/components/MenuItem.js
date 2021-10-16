@@ -84,7 +84,7 @@ const MenuItem = ({product}) => {
                             <h3>{product.title}</h3>
                             <h3>${product.price}</h3>
                             <Button
-                                onClick={() => {addCart(product.id); {setOpen(true)} }}
+                                onClick={() => { addCart(product.id); setOpen(true) }}
                                 variant="outlined"
                                 color="inherit"
                                 className={classes.buttonhover}

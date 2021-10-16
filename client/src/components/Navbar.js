@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import { ShoppingCart } from "@mui/icons-material"
 import { scroller } from 'react-scroll'
 
+//Login Sign Up
+import LoginSignup from './LoginSignup'
+
 //Context
 import { CartContext } from "../context/CartContext"
 
@@ -98,6 +101,7 @@ export default function Navbar(){
             </div>
 
             {/* Login and Sign Up dialog should be here */}
+            <LoginSignup />
 
             <nav className={classes.container}>
                 <Link to="/about" className={classes.navbutton}>About</Link>
