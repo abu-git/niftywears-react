@@ -107,8 +107,10 @@ const ShowcaseIntro = styled('div')(({theme}) => ({
 const useStyles = makeStyles({
     gridcontainer: {
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "center"
+        //flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        //border: "1px solid red"
     }
 })
 

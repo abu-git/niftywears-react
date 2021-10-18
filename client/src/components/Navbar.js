@@ -28,11 +28,16 @@ const styles = theme => ({
 const useStyles = makeStyles({
     headerContainer: {
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        //border: "1px solid red",
+        padding: 0,
+        margin: 0,
+        height: "4.5em"
     },
     header: {
         margin: 0,
-        padding: 0
+        padding: 0,
+        //border: "1px solid yellow"
     },
     h3effects: {
         color: "white"
@@ -41,7 +46,7 @@ const useStyles = makeStyles({
         display: "flex",
         color: "white",
         backgroundColor: "black",
-        height: "45px"
+        height: "45px",
     },
     navbutton: {
         padding: "10px",

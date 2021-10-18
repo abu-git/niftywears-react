@@ -11,7 +11,7 @@ import { CartContext } from '../context/CartContext'
 
 const StyledCardRoot = styled('div')(({theme}) => ({
     maxWidth: 300,
-    textAlign: "center",
+    //textAlign: "center",
     padding: 0,
     [theme.breakpoints.down('sm')]: {
         width: 400
@@ -50,15 +50,29 @@ const useStyles = makeStyles({
         margin: "0 auto"
     },
     buttonhover: {
+        backgroundColor: "inherit",
+        borderColor: "white",
+        padding: "1.2rem",
+        margin: "1rem",
+        borderRadius: "4px",
+        color: "white",
         '&:hover':{
             backgroundColor: "#ffca68",
-            transform: "scale(1.1)",
+            borderColor: "black",
+            color: "black",
+            transform: "scale(1.2)",
             //color: "black"
         }
     },
     h6: {
         padding: "0",
         margin: "0"
+    },
+    carddiv: {
+        textAlign: "center",
+        margin: "0 auto",
+        padding: "2rem 4rem",
+        maxWidth: "400px"
     }
 })
 
@@ -69,8 +83,9 @@ const MenuItem = ({product}) => {
     console.log(product)
     return(
         <>
-            <StyledGridItem>
-                <StyledCardRoot>
+            {/*<StyledGridItem>*/}
+                {/*<StyledCardRoot>*/}
+                <div className={classes.carddiv}>
                     <CardActionArea>
                         <CardMedia
                             component="img" 
@@ -83,14 +98,14 @@ const MenuItem = ({product}) => {
                         <Box className={classes.buttonmargin}>
                             <h3>{product.title}</h3>
                             <h3>${product.price}</h3>
-                            <Button
+                            <button
                                 onClick={() => { addCart(product.id); setOpen(true) }}
                                 variant="outlined"
                                 color="inherit"
                                 className={classes.buttonhover}
                             >
                                 <h5 className={classes.h6}>Add to Cart</h5>
-                            </Button>
+                            </button>
                             <div>
                                 <Collapse in={open}>
                                     <Alert
@@ -111,8 +126,9 @@ const MenuItem = ({product}) => {
                             </div>
                         </Box>
                     </CardActions>
-                </StyledCardRoot>
-            </StyledGridItem>
+                </div>
+                {/*</StyledCardRoot>*/}
+            {/*</StyledGridItem>*/}
         </>
     )
 }
