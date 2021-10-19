@@ -103,10 +103,6 @@ const useStyles = makeStyles({
 
 
 
-
-
-
-
 export default function AboutPage(){
     const classes = useStyles()
 
