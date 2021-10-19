@@ -2,11 +2,14 @@ import { Container, Grid } from '@mui/material'
 import  { makeStyles } from '@mui/styles'
 import { styled } from '@mui/material/styles'
 
+import Footer from './Footer'
+
 const StyledContainer = styled('div')(({theme}) => ({
     [theme.breakpoints.down('xl')]: {
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        height: "75vh"
     },
     [theme.breakpoints.down('lg')]: {
         display: "flex",
@@ -24,12 +27,15 @@ const Left = styled('div')(({theme}) => ({
         width: "50%",
         display: "flex",
         justifyContent: "center",
-        border: "1px solid red",
+        //border: "1px solid red",
     },
     [theme.breakpoints.down('lg')]: {
         width: "50%",
         display: "flex",
         justifyContent: "center",
+    },
+    [theme.breakpoints.down('md')]: {
+        width: "80%"
     }
 }))
 
@@ -40,7 +46,7 @@ const Right = styled('div')(({theme}) => ({
         justifyContent: "center",
         textAlign: "center",
         alignItems: "center",
-        border: "1px solid blue"
+        //border: "1px solid blue"
     },
     [theme.breakpoints.down('lg')]: {
         width: "50%",
@@ -48,6 +54,14 @@ const Right = styled('div')(({theme}) => ({
         justifyContent: "center",
         textAlign: "center",
         alignItems: "center",
+    },
+    [theme.breakpoints.down('md')]: {
+        width: "80%",
+        fontSize: "1em"
+    },
+    [theme.breakpoints.down('sm')]: {
+        width: "80%",
+        fontSize: "0.7em"
     }
 }))
 
@@ -84,6 +98,7 @@ export default function AboutPage(){
                             </Right>
                     </StyledContainer>
             </Container>
+            <Footer />
         </>
     )
 }
