@@ -10,12 +10,12 @@ import { useState, useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 
 const StyledCardRoot = styled('div')(({theme}) => ({
-    maxWidth: 300,
+    //maxWidth: 300,
     //textAlign: "center",
     padding: 0,
-    [theme.breakpoints.down('sm')]: {
+    /*[theme.breakpoints.down('sm')]: {
         width: 400
-    },
+    },*/
     transition: "transform 0.15s ease-in-out",
     "&:hover": { 
         transform: "scale3d(1.05, 1.05, 1)" 
@@ -56,6 +56,7 @@ const useStyles = makeStyles({
         margin: "1rem",
         borderRadius: "4px",
         color: "white",
+        transition: "transform 0.15s ease-in-out",
         '&:hover':{
             backgroundColor: "#ffca68",
             borderColor: "black",
@@ -70,9 +71,17 @@ const useStyles = makeStyles({
     },
     carddiv: {
         textAlign: "center",
+        //border: "1px solid red",
+        borderRadius: "5px",
+        //margin: "0",
         margin: "0 auto",
-        padding: "2rem 4rem",
-        maxWidth: "400px"
+        //adding: "2rem 4rem",
+        padding: 0,
+        maxWidth: "300px",
+        transition: "transform 0.15s ease-in-out",
+        '&:hover': {
+            transform: "scale3d(1.05, 1.05, 1)"
+        }
     }
 })
 

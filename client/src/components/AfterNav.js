@@ -111,6 +111,10 @@ const useStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         //border: "1px solid red"
+    },
+    griditem: {
+        paddingBottom: "1rem",
+        //border: "1px solid yellow"
     }
 })
 
@@ -145,13 +149,13 @@ export default function AfterNav(){
                     </StyledGridItem>
                 </StyledGridContainer>
                 <Grid container className={classes.gridcontainer}>
-                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                    <Grid item lg={4} md={6} sm={12} xs={12} className={classes.griditem}>
                         <MenuItem product={products[0]} key={products[0].id} />   
                     </Grid>
-                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                    <Grid item lg={4} md={6} sm={12} xs={12} className={classes.griditem}>
                         <MenuItem product={products[1]} key={products[1].id} />   
                     </Grid>
-                    <Grid item lg={4} md={6} sm={12} xs={12}>
+                    <Grid item lg={4} md={6} sm={12} xs={12} className={classes.griditem}>
                         <MenuItem product={products[2]} key={products[2].id} />   
                     </Grid>
                 </Grid>
