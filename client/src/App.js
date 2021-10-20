@@ -1,6 +1,7 @@
 import HomePage from "./components/HomePage"
 import AboutPage from "./components/AboutPage"
 import ContactPage from "./components/ContactPage"
+import CartPage from "./components/CartPage"
 
 import  { makeStyles } from '@mui/styles'
 import { BrowserRouter as Router, Route } from "react-router-dom"
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/contact" component={ContactPage} />
+          <Route exact path="/cart" component={CartPage} />
         </div>
       </CartContextProvider>
     </Router>
