@@ -1,10 +1,22 @@
 import { ReactTitle } from 'react-meta-tags'
 import { Container, IconButton } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import  { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 
 import { ArrowBack } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
+
+import { CartContext } from "../context/CartContext"
+import { useContext } from "react"
+
+
+const StyledImg = styled('img')(({theme}) => ({
+    padding: "1em",
+    width: "150px",
+    height: "100%",
+
+}))
 
 const useStyles = makeStyles({
     headerContainer: {
@@ -21,7 +33,14 @@ const useStyles = makeStyles({
         //border: "1px solid yellow"
     },
     h3effects: {
-        color: "white"
+        color: "white",
+    },
+    titleContainer: {
+        textAlign: "center"
+    },
+    titleFX: {
+        color: "white",
+        fontSize: "2em"
     },
     link: {
         textDecoration: "none"
@@ -35,12 +54,34 @@ const useStyles = makeStyles({
     backtext: {
         color: "white",
         paddingLeft: "1em"
+    },
+    cartContainer: {
+        border: "1px solid red",
+        display: "flex",
+    },
+    left: {
+        width: "40%",
+        border: "1px soild blue"
+    },
+    right: {
+        width: "60%",
+        border: "1px solid yellow"
+    },
+    thumbnail: {
+        display: "flex",
+        justifyContent: "center"
+    },
+    thumbnailDetail: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
     }
 })
 
 
 export default function CartPage(){
     const classes = useStyles()
+    const { cart } = useContext(CartContext)
 
     return(
         <>
@@ -64,7 +105,31 @@ export default function CartPage(){
                 </Link>
                 {/*-----------------------------------------*/}
 
-                
+                <header className={classes.titleContainer}>
+                    <h3 className={classes.titleFX}>Shopping Cart</h3>
+                </header>
+                <section>
+                    { cart.map(item => {
+                        return(
+                            <>
+                                <div className={classes.cartContainer}>
+                                    <div className={classes.left}>
+                                        <div className={classes.thumbnail}>
+                                            <StyledImg src={item.photo} alt={item.title} />
+                                            <div className={classes.thumbnailDetail}>
+                                                <h4>{item.title}</h4>
+                                                <h6>{item.price}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={classes.right}>
+
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })}
+                </section>
             </Container>
         </>
     )
