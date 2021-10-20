@@ -3,6 +3,8 @@ import  { makeStyles } from '@mui/styles'
 import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 
+import { ReactTitle } from 'react-meta-tags'
+
 import { ArrowBack } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 
@@ -108,6 +110,7 @@ export default function AboutPage(){
 
     return(
         <>
+            <ReactTitle title="Nifty Wears | About" />
             <Container maxWidth="xl">
                 <div className={classes.headerContainer}>
                     <Link to="/" className={classes.link}>

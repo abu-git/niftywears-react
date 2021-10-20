@@ -3,6 +3,8 @@ import  { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 
+import { ReactTitle } from 'react-meta-tags'
+
 import { ArrowBack } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 
@@ -96,7 +98,8 @@ const useStyles = makeStyles({
         borderRadius: "5px",
         transition: "transform 0.15s ease-in-out",
         '&:hover': {
-            transform: "scale3d(1.05, 1.05, 1)" 
+            transform: "scale3d(1.05, 1.05, 1)",
+            color: "#ffca68" 
         }
     }
 })
@@ -106,6 +109,7 @@ export default function ContactPage(){
 
     return(
         <>
+            <ReactTitle title="Nifty Wears | Contact" />
             <Container maxWidth="xl">
                 <div className={classes.headerContainer}>
                     <Link to="/" className={classes.link}>
