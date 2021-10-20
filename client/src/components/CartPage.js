@@ -31,6 +31,10 @@ const StyledLeft = styled('div')(({theme}) => ({
     }
 }))
 
+const StyledH4 = styled('h4')(({theme}) => ({
+
+}))
+
 const StyledRight = styled('div')(({theme}) => ({
     width: "50%",
     //border: "1px solid blue",
@@ -104,12 +108,23 @@ const useStyles = makeStyles({
         color: "white",
         borderRadius: "5px",
         margin: "0 9px 0 9px",
-        fontSize: "18px"
+        fontSize: "18px",
+        cursor: "pointer",
+        transition: "transform 0.15s ease-in-out",
+        '&:hover': {
+            transform: "scale(1.2)",
+        }
     },
     h4: {
         fontSize: "25px",
         padding: "0",
         margin: "0"
+    },
+    deleteIcon: {
+        transition: "transform 0.15s ease-in-out",
+        '&:hover': {
+            transform: "scale(1.2)",
+        }
     }
 })
 
@@ -153,7 +168,7 @@ export default function CartPage(){
                                             <StyledImg src={item.photo} alt={item.title} />
                                             <div className={classes.thumbnailDetail}>
                                                 <h4>{item.title}</h4>
-                                                <h6>{item.price}</h6>
+                                                <h5>{item.price}</h5>
                                             </div>
                                         </div>
                                     </StyledLeft>
@@ -162,7 +177,7 @@ export default function CartPage(){
                                             <button onClick={() => removeCart(item.id)} className={classes.button}>-</button>
                                             <h4 className={classes.h4}>{item.quantity}</h4>
                                             <button onClick={() => addCart(item.id)} className={classes.button}>+</button>
-                                            <DeleteOutline onClick={() => removeCart(item.id)} sx={{ fontSize: 40 }} />
+                                            <DeleteOutline className={classes.deleteIcon} onClick={() => removeCart(item.id)} sx={{ fontSize: 42 }} />
                                         </div>
                                     </StyledRight>
                                 </div>
