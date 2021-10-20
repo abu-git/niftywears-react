@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles'
 import  { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 
-import { ArrowBack } from "@mui/icons-material"
+import { ArrowBack, DeleteOutline } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 
 import { CartContext } from "../context/CartContext"
@@ -15,7 +15,29 @@ const StyledImg = styled('img')(({theme}) => ({
     padding: "1em",
     width: "150px",
     height: "100%",
+    [theme.breakpoints.down('md')]: {
+        width: "130px"
+    },
+    [theme.breakpoints.down('sm')]: {
+        display: "none"
+    }
+}))
 
+const StyledLeft = styled('div')(({theme}) => ({
+    width: "50%",
+    //border: "1px solid yellow",
+    [theme.breakpoints.down('sm')]: {
+        width: "35%"
+    }
+}))
+
+const StyledRight = styled('div')(({theme}) => ({
+    width: "50%",
+    //border: "1px solid blue",
+    margin: "auto",
+    [theme.breakpoints.down('sm')]: {
+        width: "65%"
+    }
 }))
 
 const useStyles = makeStyles({
@@ -56,16 +78,10 @@ const useStyles = makeStyles({
         paddingLeft: "1em"
     },
     cartContainer: {
-        border: "1px solid red",
+        //border: "1px solid red",
         display: "flex",
-    },
-    left: {
-        width: "40%",
-        border: "1px soild blue"
-    },
-    right: {
-        width: "60%",
-        border: "1px solid yellow"
+        border: "1px solid grey",
+        borderRadius: "5px"
     },
     thumbnail: {
         display: "flex",
@@ -75,13 +91,32 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center"
+    },
+    rightDetail: {
+        display: "flex",
+        //border: "1px solid red",
+        justifyContent: "center",
+    },
+    button: {
+        padding: "15px 20px 15px 20px",
+        backgroundColor: "black",
+        borderColor: "white",
+        color: "white",
+        borderRadius: "5px",
+        margin: "0 9px 0 9px",
+        fontSize: "18px"
+    },
+    h4: {
+        fontSize: "25px",
+        padding: "0",
+        margin: "0"
     }
 })
 
 
 export default function CartPage(){
     const classes = useStyles()
-    const { cart } = useContext(CartContext)
+    const { cart, addCart, removeCart } = useContext(CartContext)
 
     return(
         <>
@@ -113,7 +148,7 @@ export default function CartPage(){
                         return(
                             <>
                                 <div className={classes.cartContainer}>
-                                    <div className={classes.left}>
+                                    <StyledLeft>
                                         <div className={classes.thumbnail}>
                                             <StyledImg src={item.photo} alt={item.title} />
                                             <div className={classes.thumbnailDetail}>
@@ -121,10 +156,15 @@ export default function CartPage(){
                                                 <h6>{item.price}</h6>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className={classes.right}>
-
-                                    </div>
+                                    </StyledLeft>
+                                    <StyledRight>
+                                        <div className={classes.rightDetail}>
+                                            <button onClick={() => removeCart(item.id)} className={classes.button}>-</button>
+                                            <h4 className={classes.h4}>{item.quantity}</h4>
+                                            <button onClick={() => addCart(item.id)} className={classes.button}>+</button>
+                                            <DeleteOutline onClick={() => removeCart(item.id)} sx={{ fontSize: 40 }} />
+                                        </div>
+                                    </StyledRight>
                                 </div>
                             </>
                         )
