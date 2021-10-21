@@ -59,7 +59,6 @@ const StyledButton = styled('button')(({theme}) => ({
         padding: "12px 17px 12px 17px",
         margin: "0 7px 0 7px",
     }
-
 }))
 
 const StyledRight = styled('div')(({theme}) => ({
@@ -86,15 +85,58 @@ const StyledCartTotalPromoContainer = styled('div')(({theme}) => ({
 }))
 
 const StyledPromoContainer = styled('div')(({theme}) => ({
-    border: "1px solid red",
-    width: "50%"
+    //border: "1px solid red",
+    width: "50%",
+    textAlign: "center"
 }))
 
 const StyledTotalContainer = styled('div')(({theme}) => ({
-    border: "1px solid blue",
+    //border: "1px solid blue",
     width: "50%"
 }))
 
+const StyledInputElement = styled('input')(({theme}) => ({
+    width: "200px",
+    fontSize: "1rem",
+    //font-family: IBM Plex Sans, sans-serif;
+    fontWeight: 400,
+    //line-height: 1.4375em;
+    background: "rgb(243, 246, 249)",
+    border: "1px solid #E5E8EC",
+    borderRadius: "10px",
+    padding: "6px 10px",
+    color: "#20262D",
+    transition: "width 300ms ease",
+    '&:hover': {
+        background: "#EAEEF3",
+        borderColor: "#E5E8EC",
+    },
+
+    '&:focus': {
+        outline: "none",
+        width: "220px",
+        transition: "width 200ms ease-out"
+    }
+}))
+
+const StyledPromoButton = styled('button')(({theme}) => ({
+    padding: "12px 17px 12px 17px",
+    backgroundColor: "black",
+    borderColor: "white",
+    color: "white",
+    borderRadius: "10px",
+    margin: "0 8px 0 8px",
+    fontSize: "0.8em",
+    cursor: "pointer",
+    transition: "transform 0.15s ease-in-out",
+    '&:hover': {
+        transform: "scale(1.1)",
+    },
+    [theme.breakpoints.down('sm')]: {
+        padding: "12px 17px 12px 17px",
+        margin: "0 7px 0 7px",
+    }
+}))
 const useStyles = makeStyles({
     headerContainer: {
         display: "flex",
@@ -244,6 +286,8 @@ export default function CartPage(){
                 <StyledCartTotalPromoContainer>
                     <StyledPromoContainer>
                         <p className={classes.promotext}>Have a Promo Code?</p>
+                        <StyledInputElement placeholder="Enter Promo Code" />
+                        <StyledPromoButton>Submit Code</StyledPromoButton>
                     </StyledPromoContainer>
                     <StyledTotalContainer>
                         <h5>Subtotal: {" "}&#163;{total}</h5>
