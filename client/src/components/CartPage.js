@@ -74,25 +74,37 @@ const StyledCardContainer = styled('div')(({theme}) => ({
     display: "flex",
     border: "1px solid grey",
     borderRadius: "5px",
-    /*[theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('sm')]: {
         border: "none"
-    }*/
+    }
 }))
 
 const StyledCartTotalPromoContainer = styled('div')(({theme}) => ({
     marginTop: "2em",
     display: "flex",
+    [theme.breakpoints.down('md')]: {
+        flexDirection: "column",
+        alignItems: "center"
+    }
 }))
 
 const StyledPromoContainer = styled('div')(({theme}) => ({
     //border: "1px solid red",
     width: "50%",
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down('md')]: {
+        width: "100%"
+    }
 }))
 
 const StyledTotalContainer = styled('div')(({theme}) => ({
     //border: "1px solid blue",
-    width: "50%"
+    width: "50%",
+    textAlign: "center",
+    [theme.breakpoints.down('md')]: {
+        width: "100%",
+        textAlign: "center"
+    }
 }))
 
 const StyledInputElement = styled('input')(({theme}) => ({
@@ -104,8 +116,9 @@ const StyledInputElement = styled('input')(({theme}) => ({
     background: "rgb(243, 246, 249)",
     border: "1px solid #E5E8EC",
     borderRadius: "10px",
-    padding: "6px 10px",
+    padding: "8px 12px",
     color: "#20262D",
+    marginBottom: "0.8em",
     transition: "width 300ms ease",
     '&:hover': {
         background: "#EAEEF3",
@@ -131,10 +144,15 @@ const StyledPromoButton = styled('button')(({theme}) => ({
     transition: "transform 0.15s ease-in-out",
     '&:hover': {
         transform: "scale(1.1)",
+        borderColor: "#ffca68",
+        color: "#ffca68"
+    },
+    [theme.breakpoints.down('md')]: {
+        marginLeft: "1em",
     },
     [theme.breakpoints.down('sm')]: {
-        padding: "12px 17px 12px 17px",
-        margin: "0 7px 0 7px",
+        padding: "10px 15px 10px 15px",
+        margin: "0 6px 0 6px",
     }
 }))
 const useStyles = makeStyles({
@@ -221,6 +239,9 @@ const useStyles = makeStyles({
     },
     promotext: {
         fontSize: "1em"
+    },
+    totalH4: {
+        color: "#ffca68"
     }
 })
 
@@ -293,7 +314,7 @@ export default function CartPage(){
                         <h5>Subtotal: {" "}&#163;{total}</h5>
                         <h5>Promo Code Discount: &#163;0</h5>
                         <h5>Tax: &#163;0</h5>
-                        <h4>Total: &#163;{total}</h4>
+                        <h4 className={classes.totalH4}>Total: &#163;{total}</h4>
                     </StyledTotalContainer>
                 </StyledCartTotalPromoContainer>
             </Container>
