@@ -10,6 +10,8 @@ import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 import { CartContext } from "../context/CartContext"
 import { useContext } from "react"
 
+import Footer from './Footer'
+
 
 const StyledImg = styled('img')(({theme}) => ({
     padding: "1em",
@@ -40,6 +42,26 @@ const StyledH4 = styled('h4')(({theme}) => ({
     }
 }))
 
+const StyledButton = styled('button')(({theme}) => ({
+    padding: "15px 20px 15px 20px",
+    backgroundColor: "black",
+    borderColor: "white",
+    color: "white",
+    borderRadius: "5px",
+    margin: "0 9px 0 9px",
+    fontSize: "18px",
+    cursor: "pointer",
+    transition: "transform 0.15s ease-in-out",
+    '&:hover': {
+        transform: "scale(1.2)",
+    },
+    [theme.breakpoints.down('sm')]: {
+        padding: "12px 17px 12px 17px",
+        margin: "0 7px 0 7px",
+    }
+
+}))
+
 const StyledRight = styled('div')(({theme}) => ({
     width: "50%",
     //border: "1px solid blue",
@@ -56,6 +78,21 @@ const StyledCardContainer = styled('div')(({theme}) => ({
     /*[theme.breakpoints.down('sm')]: {
         border: "none"
     }*/
+}))
+
+const StyledCartTotalPromoContainer = styled('div')(({theme}) => ({
+    marginTop: "2em",
+    display: "flex",
+}))
+
+const StyledPromoContainer = styled('div')(({theme}) => ({
+    border: "1px solid red",
+    width: "50%"
+}))
+
+const StyledTotalContainer = styled('div')(({theme}) => ({
+    border: "1px solid blue",
+    width: "50%"
 }))
 
 const useStyles = makeStyles({
@@ -139,13 +176,16 @@ const useStyles = makeStyles({
         '&:hover': {
             transform: "scale(1.2)",
         }
+    },
+    promotext: {
+        fontSize: "1em"
     }
 })
 
 
 export default function CartPage(){
     const classes = useStyles()
-    const { cart, addCart, removeCart } = useContext(CartContext)
+    const { cart, addCart, removeCart, total } = useContext(CartContext)
 
     return(
         <>
@@ -188,9 +228,9 @@ export default function CartPage(){
                                     </StyledLeft>
                                     <StyledRight>
                                         <div className={classes.rightDetail}>
-                                            <button onClick={() => removeCart(item.id)} className={classes.button}>-</button>
+                                            <StyledButton onClick={() => removeCart(item.id)}>-</StyledButton>
                                             <StyledH4>{item.quantity}</StyledH4>
-                                            <button onClick={() => addCart(item.id)} className={classes.button}>+</button>
+                                            <StyledButton onClick={() => addCart(item.id)}>+</StyledButton>
                                             <DeleteOutline className={classes.deleteIcon} onClick={() => removeCart(item.id)} sx={{ fontSize: 42 }} />
                                         </div>
                                     </StyledRight>
@@ -199,7 +239,21 @@ export default function CartPage(){
                         )
                     })}
                 </section>
+
+                {/*----Promo Code and Total Info----*/}
+                <StyledCartTotalPromoContainer>
+                    <StyledPromoContainer>
+                        <p className={classes.promotext}>Have a Promo Code?</p>
+                    </StyledPromoContainer>
+                    <StyledTotalContainer>
+                        <h5>Subtotal: {" "}&#163;{total}</h5>
+                        <h5>Promo Code Discount: &#163;0</h5>
+                        <h5>Tax: &#163;0</h5>
+                        <h4>Total: &#163;{total}</h4>
+                    </StyledTotalContainer>
+                </StyledCartTotalPromoContainer>
             </Container>
+            <Footer />
         </>
     )
 }
