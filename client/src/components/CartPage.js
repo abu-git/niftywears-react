@@ -127,7 +127,7 @@ const StyledInputElement = styled('input')(({theme}) => ({
 
     '&:focus': {
         outline: "none",
-        width: "220px",
+        width: "230px",
         transition: "width 200ms ease-out"
     }
 }))
@@ -212,20 +212,6 @@ const useStyles = makeStyles({
         //border: "1px solid red",
         justifyContent: "center",
     },
-    button: {
-        padding: "15px 20px 15px 20px",
-        backgroundColor: "black",
-        borderColor: "white",
-        color: "white",
-        borderRadius: "5px",
-        margin: "0 9px 0 9px",
-        fontSize: "18px",
-        cursor: "pointer",
-        transition: "transform 0.15s ease-in-out",
-        '&:hover': {
-            transform: "scale(1.2)",
-        }
-    },
     h4: {
         fontSize: "25px",
         padding: "0",
@@ -242,6 +228,14 @@ const useStyles = makeStyles({
     },
     totalH4: {
         color: "#ffca68"
+    },
+    proceedContainer: {
+        textAlign: "center",
+        margin: "2em 0"
+    },
+    noItems: {
+        textAlign: "center",
+        margin: "7em 0"
     }
 })
 
@@ -304,19 +298,35 @@ export default function CartPage(){
                 </section>
 
                 {/*----Promo Code and Total Info----*/}
-                <StyledCartTotalPromoContainer>
-                    <StyledPromoContainer>
-                        <p className={classes.promotext}>Have a Promo Code?</p>
-                        <StyledInputElement placeholder="Enter Promo Code" />
-                        <StyledPromoButton>Submit Code</StyledPromoButton>
-                    </StyledPromoContainer>
-                    <StyledTotalContainer>
-                        <h5>Subtotal: {" "}&#163;{total}</h5>
-                        <h5>Promo Code Discount: &#163;0</h5>
-                        <h5>Tax: &#163;0</h5>
-                        <h4 className={classes.totalH4}>Total: &#163;{total}</h4>
-                    </StyledTotalContainer>
-                </StyledCartTotalPromoContainer>
+                {cart.length > 0 &&
+                    <>
+                        <StyledCartTotalPromoContainer>
+                            <StyledPromoContainer>
+                                <p className={classes.promotext}>Have a Promo Code?</p>
+                                <StyledInputElement placeholder="Enter Promo Code" />
+                                <StyledPromoButton>Submit Code</StyledPromoButton>
+                            </StyledPromoContainer>
+                            <StyledTotalContainer>
+                                <h5>Subtotal: {" "}&#163;{total}</h5>
+                                <h5>Promo Code Discount: &#163;0</h5>
+                                <h5>Tax: &#163;0</h5>
+                                <h4 className={classes.totalH4}>Total: &#163;{total}</h4>
+                            </StyledTotalContainer>
+                        </StyledCartTotalPromoContainer>
+                        <div className={classes.proceedContainer}>
+                            <h3>Proceed to confirm delivery info</h3>
+                            <StyledPromoButton>Proceed</StyledPromoButton> 
+                        </div>
+                    </>
+                }
+
+                {total === 0 &&
+                    <>
+                        <div className={classes.noItems}>
+                            <h4 className={classes.totalH4}>No items in Cart</h4>
+                        </div>
+                    </>
+                }
             </Container>
             <Footer />
         </>

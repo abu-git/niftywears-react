@@ -12,8 +12,6 @@ const useStyles = makeStyles({
         minHeight: "100vh",
         backgroundColor: "hsl(0, 100%, 0%)",
         color: "white",
-        //marginTop: "0",
-        //border: "1px solid white"
     }
 })
 
