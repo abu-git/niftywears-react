@@ -32,7 +32,12 @@ const StyledLeft = styled('div')(({theme}) => ({
 }))
 
 const StyledH4 = styled('h4')(({theme}) => ({
-
+    fontSize: "25px",
+    padding: "0",
+    margin: "0",
+    [theme.breakpoints.down('sm')]: {
+        fontSize: "20px"
+    }
 }))
 
 const StyledRight = styled('div')(({theme}) => ({
@@ -42,6 +47,15 @@ const StyledRight = styled('div')(({theme}) => ({
     [theme.breakpoints.down('sm')]: {
         width: "65%"
     }
+}))
+
+const StyledCardContainer = styled('div')(({theme}) => ({
+    display: "flex",
+    border: "1px solid grey",
+    borderRadius: "5px",
+    /*[theme.breakpoints.down('sm')]: {
+        border: "none"
+    }*/
 }))
 
 const useStyles = makeStyles({
@@ -162,7 +176,7 @@ export default function CartPage(){
                     { cart.map(item => {
                         return(
                             <>
-                                <div className={classes.cartContainer}>
+                                <StyledCardContainer>
                                     <StyledLeft>
                                         <div className={classes.thumbnail}>
                                             <StyledImg src={item.photo} alt={item.title} />
@@ -175,12 +189,12 @@ export default function CartPage(){
                                     <StyledRight>
                                         <div className={classes.rightDetail}>
                                             <button onClick={() => removeCart(item.id)} className={classes.button}>-</button>
-                                            <h4 className={classes.h4}>{item.quantity}</h4>
+                                            <StyledH4>{item.quantity}</StyledH4>
                                             <button onClick={() => addCart(item.id)} className={classes.button}>+</button>
                                             <DeleteOutline className={classes.deleteIcon} onClick={() => removeCart(item.id)} sx={{ fontSize: 42 }} />
                                         </div>
                                     </StyledRight>
-                                </div>
+                                </StyledCardContainer>
                             </>
                         )
                     })}
