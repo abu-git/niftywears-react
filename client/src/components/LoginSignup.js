@@ -77,10 +77,10 @@ export default function LoginSignup(props){
     const handleLoginSubmit = (e) => {
         e.preventDefault()
         const validate = validateLoginInput()
-        console.log(validate + " :is validate value")
-
-        console.log("Email value", loginEmail.toString())
-
+        //console.log(validate + " :is validate value")
+        //console.log("Email value", loginEmail.toString())
+        
+        
     }
 
     const handleLoginOpen = () => {
@@ -110,51 +110,49 @@ export default function LoginSignup(props){
                 <h5 className={classes.linkeffects} onClick={handleSignupOpen}>Sign Up</h5>
             </nav>
 
-            {/* Login Dialog */}
-            
-                <Dialog open={openLogin} onClose={handleLoginClose}>
-                    <div className={classes.dialogColor}>
+            {/* Login Dialog */}    
+            <Dialog open={openLogin} onClose={handleLoginClose}>
+                <div className={classes.dialogColor}>
                     <DialogTitle>
-                        Login
+                        <h3>Login</h3>
                     </DialogTitle>
                     <form onSubmit={handleLoginSubmit}>
-                    <DialogContent>
-                        <TextField
-                            id="loginEmail"
-                            label="email"
-                            type="email"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            value={loginEmail}
-                            helperText={loginEmailHelperText}
-                            onInput={(e) => setLoginEmail(e.target.value)}
-                            fullWidth
-                        />
-                        <TextField 
-                            id="password"
-                            label="password"
-                            type="password"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            value={loginPassword}
-                            helperText={loginPasswordHelperText}
-                            onInput={(e) => setLoginPassword(e.target.value)}
-                            fullWidth
-                        />                   
-                    </DialogContent>
-                    <DialogActions>
-                        <button onClick={handleLoginClose} className={classes.button}>
-                            <h4 className={classes.h4}>Cancel</h4>
-                        </button>
-                        <input className={classes.button} type="submit" value="Log In"/>
-                    </DialogActions>
+                        <DialogContent>
+                            <TextField
+                                id="loginEmail"
+                                label="email"
+                                type="email"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                value={loginEmail}
+                                helperText={loginEmailHelperText}
+                                onInput={(e) => setLoginEmail(e.target.value)}
+                                fullWidth
+                            />
+                            <TextField 
+                                id="password"
+                                label="password"
+                                type="password"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                value={loginPassword}
+                                helperText={loginPasswordHelperText}
+                                onInput={(e) => setLoginPassword(e.target.value)}
+                                fullWidth
+                            />                   
+                        </DialogContent>
+                        <DialogActions>
+                            <button onClick={handleLoginClose} className={classes.button}>
+                                <h4 className={classes.h4}>Cancel</h4>
+                            </button>
+                            <input className={classes.button} type="submit" value="Log In"/>
+                        </DialogActions>
                     </form>
-                    </div>
-                </Dialog>
+                </div>
+            </Dialog>
             
-
 
             {/* Sign Up Dialog */}
             <Dialog open={openSignup} onClose={handleSignupClose}>
@@ -211,7 +209,7 @@ export default function LoginSignup(props){
                             fullWidth
                         />
                         <TextField 
-                            id="password"
+                            id="confirmpassword"
                             label="confirm password"
                             type="password"
                             margin="dense"
