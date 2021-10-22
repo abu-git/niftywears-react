@@ -1,21 +1,21 @@
-import { Box, Button, CardActions, Alert } from '@mui/material/'
+import { Box, CardActions, Alert } from '@mui/material/'
 import { CardActionArea, CardMedia, Collapse, IconButton } from '@mui/material/'
 import { Close } from '@mui/icons-material/'
 import  { makeStyles } from '@mui/styles'
-import { styled } from '@mui/material/styles'
+//import { styled } from '@mui/material/styles'
 
 
 import { useState, useContext } from 'react'
 
 import { CartContext } from '../context/CartContext'
 
-const StyledCardRoot = styled('div')(({theme}) => ({
+/*const StyledCardRoot = styled('div')(({theme}) => ({
     //maxWidth: 300,
     //textAlign: "center",
     padding: 0,
     /*[theme.breakpoints.down('sm')]: {
         width: 400
-    },*/
+    },
     transition: "transform 0.15s ease-in-out",
     "&:hover": { 
         transform: "scale3d(1.05, 1.05, 1)" 
@@ -33,7 +33,7 @@ const StyledGridItem = styled('div')(({theme}) => ({
     [theme.breakpoints.down('xs')]: {
         padding: "1rem 2rem"
     }
-}))
+}))*/
 
 const useStyles = makeStyles({
     cardmedia: {
@@ -89,7 +89,7 @@ const MenuItem = ({product}) => {
     const classes = useStyles()
     const { addCart } = useContext(CartContext)
     const [open, setOpen] = useState(false)
-    console.log(product)
+    //console.log(product)
     return(
         <>
             {/*<StyledGridItem>*/}

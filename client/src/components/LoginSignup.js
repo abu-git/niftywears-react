@@ -49,25 +49,26 @@ const useStyles = makeStyles({
     }
 })
 
-export default function LoginSignup(){
+export default function LoginSignup(props){
     const classes = useStyles()
 
     //Dialog Login config
     const [openLogin, setOpenLogin] = useState(false)
     const [loginEmail, setLoginEmail] = useState('')
     const [loginPassword, setLoginPassword] = useState('')
-    const [loginHelperText, setLoginHelperText] = useState('Enter Email')
+    const [loginEmailHelperText, setLoginEmailHelperText] = useState('')
+    const [loginPasswordHelperText, setLoginPasswordHelperText] = useState('')
 
     const validateLoginInput = () => {
         //email text field
         if(validator.isEmpty(loginEmail)){
-            setLoginHelperText('Email field is required')
+            setLoginEmailHelperText('Email field is required')
             return false
         }else if(!validator.isEmail(loginEmail)){
-            setLoginHelperText('Email is invalid')
+            setLoginEmailHelperText('Email is invalid')
             return false
         }else if(validator.isEmpty(loginPassword)){
-            setLoginHelperText('Password field is required')
+            setLoginPasswordHelperText('Password field is required')
             return false
         }
         return true
@@ -78,7 +79,7 @@ export default function LoginSignup(){
         const validate = validateLoginInput()
         console.log(validate + " :is validate value")
 
-        console.log(loginEmail + " :is Email value")
+        console.log("Email value", loginEmail.toString())
 
     }
 
@@ -110,12 +111,13 @@ export default function LoginSignup(){
             </nav>
 
             {/* Login Dialog */}
-            <form onSubmit={handleLoginSubmit}>
+            
                 <Dialog open={openLogin} onClose={handleLoginClose}>
                     <div className={classes.dialogColor}>
                     <DialogTitle>
                         Login
                     </DialogTitle>
+                    <form onSubmit={handleLoginSubmit}>
                     <DialogContent>
                         <TextField
                             id="loginEmail"
@@ -125,8 +127,8 @@ export default function LoginSignup(){
                             variant="outlined"
                             size="small"
                             value={loginEmail}
-                            helperText={loginHelperText}
-                            onChange={(e) => setLoginEmail(e.target.value)}
+                            helperText={loginEmailHelperText}
+                            onInput={(e) => setLoginEmail(e.target.value)}
                             fullWidth
                         />
                         <TextField 
@@ -137,7 +139,8 @@ export default function LoginSignup(){
                             variant="outlined"
                             size="small"
                             value={loginPassword}
-                            onChange={(e) => setLoginPassword(e.target.value)}
+                            helperText={loginPasswordHelperText}
+                            onInput={(e) => setLoginPassword(e.target.value)}
                             fullWidth
                         />                   
                     </DialogContent>
@@ -145,11 +148,12 @@ export default function LoginSignup(){
                         <button onClick={handleLoginClose} className={classes.button}>
                             <h4 className={classes.h4}>Cancel</h4>
                         </button>
-                        <input className={classes.button} type="submit" value="Log In" onSubmit={handleLoginSubmit}/>
+                        <input className={classes.button} type="submit" value="Log In"/>
                     </DialogActions>
+                    </form>
                     </div>
                 </Dialog>
-            </form>
+            
 
 
             {/* Sign Up Dialog */}
