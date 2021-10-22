@@ -3,6 +3,7 @@ import  { makeStyles } from '@mui/styles'
 import { Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
 import { DialogTitle, TextField } from '@mui/material'
 import validator from 'validator'
+import axios from 'axios'
 
 const useStyles = makeStyles({
     loginsignup: {
@@ -79,6 +80,15 @@ export default function LoginSignup(props){
         const validate = validateLoginInput()
         //console.log(validate + " :is validate value")
         //console.log("Email value", loginEmail.toString())
+        if(validate){
+            const newUser = {loginEmail, loginPassword}
+            axios.post('/user/login', {loginEmail, loginPassword})
+                .then(res => {
+                    console.log(res)
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
         
         
     }
@@ -131,7 +141,7 @@ export default function LoginSignup(props){
                                 fullWidth
                             />
                             <TextField 
-                                id="password"
+                                id="loginPassword"
                                 label="password"
                                 type="password"
                                 margin="dense"
