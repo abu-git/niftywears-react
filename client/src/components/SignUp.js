@@ -331,9 +331,9 @@ export default function SignUp(){
                         </form>
                     </Right>
                 </StyledContainer>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                        <h6 className={classes.alertH6}>Sign Up Successful!</h6>
+                        Sign Up Successful!
                     </Alert>
                 </Snackbar>
             </Container>
