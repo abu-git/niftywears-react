@@ -1,7 +1,10 @@
+import * as React from 'react'
 import { useState } from "react"
 import  { makeStyles } from '@mui/styles'
 import { Container, IconButton, TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
 import validator from 'validator'
 import axios from 'axios'
 
@@ -65,6 +68,10 @@ const Right = styled('div')(({theme}) => ({
     },
 }))
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  })
+
 
 const useStyles = makeStyles({
     containerHeight: {
@@ -114,6 +121,10 @@ const useStyles = makeStyles({
     },
     buttonDiv: {
         textAlign: "center"
+    },
+    alertH6: {
+        padding: 0,
+        margin: 0
     }
 })
 
@@ -135,6 +146,10 @@ export default function SignUp(){
     const [emailHelper, setEmailHelper] = useState('')
     const [passwordHelper, setPasswordHelper] = useState('')
     const [confirmPasswordHelper, setConfirmPasswordHelper] = useState('')
+
+    //Sign Response data
+    const [dataName, setDataName] = useState('')
+    const [open, setOpen] = useState(false)
 
     const validateSignUpInput = () => {
         if(validator.isEmpty(name)){
@@ -179,7 +194,12 @@ export default function SignUp(){
         if(validate){
             axios.post('/signup', {name,phone,email,address,password,confirmPassword})
             .then(res => {
-                console.log(res)
+                console.log(res.data.name)
+                setDataName(res.data.name)
+                const dataResponse = res.data.name
+                if(dataResponse){
+                    setOpen(true)
+                }
             })
             .catch(err => {
                 if(err.response){
@@ -193,6 +213,13 @@ export default function SignUp(){
                 console.log(err.config)
             })
         }
+    }
+
+    const handleClose = (e, reason) => {
+        if(reason === 'clickaway'){
+            return
+        }
+        setOpen(false)
     }
 
     return(
@@ -304,6 +331,11 @@ export default function SignUp(){
                         </form>
                     </Right>
                 </StyledContainer>
+                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        <h6 className={classes.alertH6}>Sign Up Successful!</h6>
+                    </Alert>
+                </Snackbar>
             </Container>
             <Footer />
         </>
