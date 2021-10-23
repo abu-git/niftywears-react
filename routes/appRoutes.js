@@ -14,10 +14,12 @@ router.post('/', (req, res) => {
 
 //SignUp POST request
 router.post('/signup', (req, res) => {
-    //name,phone,email,address,password,confirmPassword
+    //sign up parameters from frontend
     const { name, phone, email, address, password, confirmPassword } = req.body
 
     console.log("Name: ", name, "Email: ", email, "Address:", address, "Password:", password, "Confirm:", confirmPassword)
+
+
 })
 
 
