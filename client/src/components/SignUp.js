@@ -1,6 +1,6 @@
 import { useState } from "react"
 import  { makeStyles } from '@mui/styles'
-import { Container, IconButton } from '@mui/material'
+import { Container, IconButton, TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import validator from 'validator'
 import axios from 'axios'
@@ -25,10 +25,10 @@ const StyledContainer = styled('div')(({theme}) => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "60vh",   
+        height: "80vh",   
     },
     [theme.breakpoints.down('sm')]: {
-        height: "58vh"
+        height: "85vh"
     }
 }))
 
@@ -68,7 +68,7 @@ const Right = styled('div')(({theme}) => ({
 
 const useStyles = makeStyles({
     containerHeight: {
-        minHeight: "75vh"
+        //minHeight: "75vh"
     },
     headerContainer: {
         display: "flex",
@@ -131,7 +131,64 @@ export default function SignUp(){
                         <h5>Have your delivery info safely stored with us.</h5>
                     </Left>
                     <Right>
-                        
+                        <form>
+                            <TextField 
+                                id="name"
+                                label="name"
+                                type="text"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                            <TextField 
+                                id="phone"
+                                label="phone number"
+                                type="text"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                            <TextField 
+                                id="address"
+                                label="delivery address"
+                                type="text"
+                                margin="dense"
+                                multiline
+                                rows={3}
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                            <TextField
+                                id="email"
+                                label="email"
+                                type="email"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                            <TextField 
+                                id="password"
+                                label="password"
+                                type="password"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                            <TextField 
+                                id="confirmpassword"
+                                label="confirm password"
+                                type="password"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                        </form>
                     </Right>
                 </StyledContainer>
             </Container>
