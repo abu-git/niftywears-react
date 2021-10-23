@@ -5,6 +5,8 @@ import { DialogTitle, TextField } from '@mui/material'
 import validator from 'validator'
 import axios from 'axios'
 
+import { Link } from 'react-router-dom'
+
 const useStyles = makeStyles({
     loginsignup: {
         display: "flex",
@@ -16,8 +18,20 @@ const useStyles = makeStyles({
         backgroundColor: "#0a0a0a"
     },
     linkeffects: {
+        fontSize: "1em",
+        marginRight: "0.8em",
+        color: "white",
+        textDecoration: "none",
+        '&:hover': {
+            color: "#ffca68",
+            cursor: "pointer"
+        }
+    },
+    logineffects: {
         fontSize: "0.85em",
         marginRight: "0.8em",
+        color: "white",
+        textDecoration: "none",
         '&:hover': {
             color: "#ffca68",
             cursor: "pointer"
@@ -96,9 +110,7 @@ export default function LoginSignup(props){
                     }
                     console.log(err.config)
                 })
-        }
-        
-        
+        }  
     }
 
     const handleLoginOpen = () => {
@@ -123,9 +135,14 @@ export default function LoginSignup(props){
     return(
         <>
             <nav className={classes.loginsignup}>
+                {/* ----- original dialog login--------
                 <h5 className={classes.linkeffects} onClick={handleLoginOpen}>Login</h5>
                 <h5 className={classes.divider}>|</h5>
-                <h5 className={classes.linkeffects} onClick={handleSignupOpen}>Sign Up</h5>
+                <h5 className={classes.linkeffects} onClick={handleSignupOpen}>Sign Up</h5>*/}
+
+                <h5 className={classes.logineffects} onClick={handleLoginOpen}>Login</h5>
+                <h5 className={classes.divider}>|</h5>
+                <Link to="/signup" className={classes.linkeffects}><h5>Sign Up</h5></Link>
             </nav>
 
             {/* Login Dialog */}    
