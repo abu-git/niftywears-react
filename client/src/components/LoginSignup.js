@@ -1,6 +1,6 @@
 import { useState } from "react"
 import  { makeStyles } from '@mui/styles'
-import { Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material'
+import { Dialog, DialogActions, DialogContent } from '@mui/material'
 import { DialogTitle, TextField } from '@mui/material'
 import validator from 'validator'
 import axios from 'axios'
@@ -82,6 +82,7 @@ export default function LoginSignup(props){
         }else if(!validator.isEmail(loginEmail)){
             setLoginEmailHelperText('Email is invalid')
             return false
+        //password field
         }else if(validator.isEmpty(loginPassword)){
             setLoginPasswordHelperText('Password field is required')
             return false
@@ -121,16 +122,6 @@ export default function LoginSignup(props){
         setOpenLogin(false)
     }
 
-    //Dialog Sign Up config
-    const [openSignup, setOpenSignup] = useState(false)
-
-    const handleSignupOpen = () => {
-        setOpenSignup(true)
-    }
-
-    const handleSignupClose = () => {
-        setOpenSignup(false)
-    }
 
     return(
         <>
@@ -185,82 +176,6 @@ export default function LoginSignup(props){
                             <input className={classes.button} type="submit" value="Log In"/>
                         </DialogActions>
                     </form>
-                </div>
-            </Dialog>
-            
-
-            {/* Sign Up Dialog */}
-            <Dialog open={openSignup} onClose={handleSignupClose}>
-                <div className={classes.dialogColor}>
-                    <DialogContent>
-                        <DialogContentText>
-                            <p className={classes.p}>Sign Up to have your delivery info safely stored with us.</p>
-                        </DialogContentText>
-                        <TextField 
-                            id="name"
-                            label="name"
-                            type="text"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                        <TextField 
-                            id="phone"
-                            label="phone number"
-                            type="text"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                        <TextField 
-                            id="address"
-                            label="delivery address"
-                            type="text"
-                            margin="dense"
-                            multiline
-                            rows={3}
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                        <TextField
-                            id="email"
-                            label="email"
-                            type="email"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                        <TextField 
-                            id="password"
-                            label="password"
-                            type="password"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                        <TextField 
-                            id="confirmpassword"
-                            label="confirm password"
-                            type="password"
-                            margin="dense"
-                            variant="outlined"
-                            size="small"
-                            fullWidth
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <button onClick={handleSignupClose} className={classes.button}>
-                            <h4 className={classes.h4}>Cancel</h4>
-                        </button>
-                        <button className={classes.button}>
-                            <h4 className={classes.h4}>Sign Up</h4>
-                        </button>
-                    </DialogActions>
                 </div>
             </Dialog>
         </>
