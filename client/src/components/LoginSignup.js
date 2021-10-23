@@ -82,11 +82,19 @@ export default function LoginSignup(props){
         //console.log("Email value", loginEmail.toString())
         if(validate){
             const newUser = {loginEmail, loginPassword}
-            axios.post('/user/login', {loginEmail, loginPassword})
+            axios.post('/', {loginEmail, loginPassword})
                 .then(res => {
                     console.log(res)
                 }).catch(err => {
-                    console.log(err)
+                    if(err.response){
+                        console.log(err.response.data)
+                        console.log("Error status: ", err.response.status)
+                    }else if(err.request){
+                        console.log(err.request)
+                    }else{
+                        console.log(err.message)
+                    }
+                    console.log(err.config)
                 })
         }
         

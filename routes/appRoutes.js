@@ -4,11 +4,11 @@ const router = express.Router()
 
 
 //Login POST request
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
     const email = req.body.loginEmail
     const password = req.body.loginPassword
 
-    console.log("Email", email, "Password:", password)
+    console.log("Email", email, "Password:", password)//works
 })
 
 

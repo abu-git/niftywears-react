@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended: true}))
 //Database Config
 
 //Routes Config
-app.use('/user', routes)
+app.use('/', routes)
 
 app.listen(PORT, () =>{
     console.log("server running on PORT: " + PORT)
