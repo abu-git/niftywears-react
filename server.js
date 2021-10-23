@@ -24,6 +24,14 @@ app.use(express.urlencoded({extended: true}))
 
 
 //Database Config
+const db = require("./config/keys").MongoURI
+mongoose.connect(db)
+.then(() => {
+    console.log('MongoDB connected...')
+})
+.catch(err => {
+    console.log(err)
+})
 
 //Routes Config
 app.use('/', routes)
