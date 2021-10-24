@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
         //if user exists
         bcrypt.compare(password, user.password).then(isMatch => {
             if(isMatch){
-                res.status(200).json({user})    
+                return res.status(200).json({userName: user.name, userPhone: user.phone, userAddress: user.address})    
             }else{
                 return res.status(400).json({msg: "Password Incorrect!"})
             }

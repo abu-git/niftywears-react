@@ -75,6 +75,33 @@ const useStyles = makeStyles({
 export default function LoginSignup(props){
     const classes = useStyles()
 
+    const location = useLocation()
+    const history = useHistory()
+
+    const [userName, setUserName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
+
+    //Login Snackbar config
+    const [openSnackBar, setOpenSnackBar] = useState(false)
+    const [openError, setOpenError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+    const [openSuccess, setOpenSuccess] = useState(false)
+
+    const handleErrorClose = (e, reason) => {
+        if(reason === 'clickaway'){
+            return
+        }
+        setOpenError(false)
+    }
+
+    const handleSuccessClose = (e, reason) => {
+        if(reason === 'clickaway'){
+            return
+        }
+        setOpenSuccess(false)
+    }
+
     //Dialog Login config
     const [openLogin, setOpenLogin] = useState(false)
     const [loginEmail, setLoginEmail] = useState('')
@@ -108,8 +135,14 @@ export default function LoginSignup(props){
             axios.post('/', {loginEmail, loginPassword})
                 .then(res => {
                     console.log(res)
+                    setUserName(res.data.userName)
+                    setPhone(res.data.userPhone)
+                    setAddress(res.data.userAddress)
+                    setOpenSuccess(true)
                 }).catch(err => {
                     if(err.response){
+                        setErrorMessage(err.response.data.msg)
+                        setOpenError(true)
                         console.log(err.response.data)
                         console.log("Error status: ", err.response.status)
                     }else if(err.request){
@@ -186,6 +219,16 @@ export default function LoginSignup(props){
                     </form>
                 </div>
             </Dialog>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openError} autoHideDuration={10000} onClose={handleErrorClose}>
+                <Alert onClose={handleErrorClose} severity="error" sx={{ width: '100%' }}>
+                    {errorMessage}
+                </Alert>
+            </Snackbar>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSuccess} autoHideDuration={10000} onClose={handleSuccessClose}>
+                <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
+                    Welcome {userName}!
+                </Alert>
+            </Snackbar>
         </>
     )
 }

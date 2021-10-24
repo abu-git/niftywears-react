@@ -17,7 +17,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export default function HomePage(){
     const location = useLocation()
-    const history = useHistory()
+    //const history = useHistory()
 
     const [nowLogin, setNowLogin] = useState('')
 

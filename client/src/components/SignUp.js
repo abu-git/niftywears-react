@@ -151,7 +151,7 @@ export default function SignUp(){
 
     //Sign Response data
     const [open, setOpen] = useState(false)
-    const [error, setError] = useState('')
+    //const [error, setError] = useState('')
 
     const validateSignUpInput = () => {
         if(validator.isEmpty(name)){
