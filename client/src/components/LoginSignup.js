@@ -45,6 +45,11 @@ const useStyles = makeStyles({
             cursor: "pointer"
         }
     },
+    welcomeeffects: {
+        fontSize: "0.85em",
+        marginRight: "0.8em",
+        color: "#ffca68"
+    },
     divider: {
         marginRight: "0.8em"
     },
@@ -139,6 +144,7 @@ export default function LoginSignup(props){
                     setPhone(res.data.userPhone)
                     setAddress(res.data.userAddress)
                     setOpenSuccess(true)
+                    setOpenLogin(false)
                 }).catch(err => {
                     if(err.response){
                         setErrorMessage(err.response.data.msg)
@@ -167,14 +173,29 @@ export default function LoginSignup(props){
     return(
         <>
             <nav className={classes.loginsignup}>
+                <>
                 {/* ----- original dialog login--------
                 <h5 className={classes.linkeffects} onClick={handleLoginOpen}>Login</h5>
                 <h5 className={classes.divider}>|</h5>
                 <h5 className={classes.linkeffects} onClick={handleSignupOpen}>Sign Up</h5>*/}
 
-                <h5 className={classes.logineffects} onClick={handleLoginOpen}>Login</h5>
-                <h5 className={classes.divider}>|</h5>
-                <Link to="/signup" className={classes.linkeffects}><h5>Sign Up</h5></Link>
+                
+                {userName === '' &&
+                    <>
+                        <h5 className={classes.logineffects} onClick={handleLoginOpen}>Login</h5>
+                        <h5 className={classes.divider}>|</h5>
+                        <Link to="/signup" className={classes.linkeffects}><h5>Sign Up</h5></Link>
+                    </>
+                }
+
+                {userName &&
+                    <>
+                        <h5 className={classes.welcomeeffects}>Welcome! {userName}</h5>
+                        <h5 className={classes.divider}>|</h5>
+                        <Link to="/signout" className={classes.linkeffects}><h5>Sign Out</h5></Link>
+                    </>
+                }
+                </>
             </nav>
 
             {/* Login Dialog */}    
@@ -226,7 +247,7 @@ export default function LoginSignup(props){
             </Snackbar>
             <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSuccess} autoHideDuration={10000} onClose={handleSuccessClose}>
                 <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
-                    Welcome {userName}!
+                    Login Successful!
                 </Alert>
             </Snackbar>
         </>

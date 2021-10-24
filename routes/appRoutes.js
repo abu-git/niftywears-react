@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
     .then(user => {
         //if user does not exist
         if(!user){
-            return res.status(400).json({ msg: "Email not found"})
+            return res.status(400).json({ msg: "Email not registered"})
         }
 
         //if user exists

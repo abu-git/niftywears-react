@@ -33,6 +33,7 @@ export default function HomePage(){
 
     useEffect(() =>{
         if(location.state){
+            console.log(location.state)
             setNowLogin(location.state.detail)
             setOpen(true)
         }
