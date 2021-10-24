@@ -8,7 +8,7 @@ import MuiAlert from '@mui/material/Alert'
 import validator from 'validator'
 import axios from 'axios'
 
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import { ReactTitle } from 'react-meta-tags'
 
@@ -70,7 +70,7 @@ const Right = styled('div')(({theme}) => ({
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  })
+})
 
 
 const useStyles = makeStyles({
@@ -131,6 +131,8 @@ const useStyles = makeStyles({
 export default function SignUp(){
     const classes = useStyles()
 
+    const history = useHistory()
+
     //SignUp data
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -148,8 +150,8 @@ export default function SignUp(){
     const [confirmPasswordHelper, setConfirmPasswordHelper] = useState('')
 
     //Sign Response data
-    const [dataName, setDataName] = useState('')
     const [open, setOpen] = useState(false)
+    const [error, setError] = useState('')
 
     const validateSignUpInput = () => {
         if(validator.isEmpty(name)){
@@ -194,15 +196,14 @@ export default function SignUp(){
         if(validate){
             axios.post('/signup', {name,phone,email,address,password,confirmPassword})
             .then(res => {
-                console.log(res.data.name)
-                setDataName(res.data.name)
-                const dataResponse = res.data.name
-                if(dataResponse){
-                    setOpen(true)
-                }
+                history.push({
+                    pathname: '/',
+                    state: {detail: "Sign Up Successful! You can now login"}
+                })
             })
             .catch(err => {
                 if(err.response){
+                    setOpen(true)//error snackbar 
                     console.log(err.response.data)
                     console.log("Error status: ", err.response.status)
                 }else if(err.request){
@@ -331,9 +332,14 @@ export default function SignUp(){
                         </form>
                     </Right>
                 </StyledContainer>
-                <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
+                {/*<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                         Sign Up Successful!
+                    </Alert>
+                </Snackbar>*/}
+                <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={10000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        Sign Up Unsuccessful! Email already registered in database.
                     </Alert>
                 </Snackbar>
             </Container>

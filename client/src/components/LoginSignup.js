@@ -1,11 +1,19 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import  { makeStyles } from '@mui/styles'
 import { Dialog, DialogActions, DialogContent } from '@mui/material'
 import { DialogTitle, TextField } from '@mui/material'
 import validator from 'validator'
 import axios from 'axios'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+
+import * as React from 'react'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+})
 
 const useStyles = makeStyles({
     loginsignup: {

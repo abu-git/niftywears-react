@@ -11,6 +11,24 @@ router.post('/', (req, res) => {
     const password = req.body.loginPassword
 
     console.log("Email", email, "Password:", password)//works
+
+    //Find User by email
+    User.findOne({ email })
+    .then(user => {
+        //if user does not exist
+        if(!user){
+            return res.status(400).json({ msg: "Email not found"})
+        }
+
+        //if user exists
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if(isMatch){
+                res.status(200).json({user})    
+            }else{
+                return res.status(400).json({msg: "Password Incorrect!"})
+            }
+        })
+    })
 })
 
 
