@@ -55,7 +55,8 @@ const StyledButton = styled('button')(({theme}) => ({
     '&:hover': {
         transform: "scale(1.2)",
         backgroundColor: "#ffca68",
-        color: "black"
+        color: "black",
+        borderColor: "black"
     },
     [theme.breakpoints.down('sm')]: {
         padding: "12px 17px 12px 17px",
@@ -333,7 +334,7 @@ export default function CartPage(){
                         </StyledCartTotalPromoContainer>
                         <div className={classes.proceedContainer}>
                             <h3><span className={classes.span}>{userName}</span> proceed to confirm delivery info</h3>
-                            <StyledPromoButton>Proceed</StyledPromoButton> 
+                            <Link to="/cart-confirm"><StyledPromoButton>Proceed</StyledPromoButton></Link> 
                         </div>
                     </>
                 }

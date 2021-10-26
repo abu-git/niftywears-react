@@ -3,6 +3,7 @@ import AboutPage from "./components/AboutPage"
 import ContactPage from "./components/ContactPage"
 import CartPage from "./components/CartPage"
 import SignUp from "./components/SignUp"
+import Proceed from "./components/Proceed"
 
 import  { makeStyles } from '@mui/styles'
 import { BrowserRouter as Router, Route } from "react-router-dom"
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/contact" component={ContactPage} />
           <Route exact path="/cart" component={CartPage} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/cart-confirm" component={Proceed} />
         </div>
       </CartContextProvider>
     </Router>
