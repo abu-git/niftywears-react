@@ -92,6 +92,7 @@ export default function LoginSignup(props){
     const [openError, setOpenError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [openSuccess, setOpenSuccess] = useState(false)
+    const [openSignout, setOpenSignout] = useState(false)
 
     const handleErrorClose = (e, reason) => {
         if(reason === 'clickaway'){
@@ -105,6 +106,13 @@ export default function LoginSignup(props){
             return
         }
         setOpenSuccess(false)
+    }
+
+    const handleSignoutClose = (e, reason) => {
+        if(reason === 'clickaway'){
+            return
+        }
+        setOpenSignout(false)
     }
 
     //Dialog Login config
@@ -139,10 +147,14 @@ export default function LoginSignup(props){
             const newUser = {loginEmail, loginPassword}
             axios.post('/', {loginEmail, loginPassword})
                 .then(res => {
-                    console.log(res)
+                    //console.log(res)
                     setUserName(res.data.userName)
                     setPhone(res.data.userPhone)
                     setAddress(res.data.userAddress)
+
+                    let userLoginInfo = {name: res.data.userName, phone: res.data.userPhone, address: res.data.userAddress}
+                    console.log(userLoginInfo)
+                    sessionStorage.setItem('userData', JSON.stringify(userLoginInfo))
                     setOpenSuccess(true)
                     setOpenLogin(false)
                 }).catch(err => {
@@ -161,6 +173,13 @@ export default function LoginSignup(props){
         }  
     }
 
+    const logout = e => {
+        console.log('...logging out')
+        sessionStorage.clear()
+        setUserName('')
+        setOpenSignout(true)
+    }
+
     const handleLoginOpen = () => {
         setOpenLogin(true)
     }
@@ -168,6 +187,15 @@ export default function LoginSignup(props){
     const handleLoginClose = () => {
         setOpenLogin(false)
     }
+
+    useEffect(() =>{
+        if(sessionStorage.getItem('userData')){
+            let data = sessionStorage.getItem('userData')
+            data = JSON.parse(data)
+            console.log(data.name)
+            setUserName(data.name)
+        }
+    })
 
 
     return(
@@ -192,7 +220,7 @@ export default function LoginSignup(props){
                     <>
                         <h5 className={classes.welcomeeffects}>Welcome! {userName}</h5>
                         <h5 className={classes.divider}>|</h5>
-                        <Link to="/signout" className={classes.linkeffects}><h5>Sign Out</h5></Link>
+                        <h5 onClick={() => logout()} className={classes.logineffects}>Sign Out</h5>
                     </>
                 }
                 </>
@@ -248,6 +276,11 @@ export default function LoginSignup(props){
             <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSuccess} autoHideDuration={10000} onClose={handleSuccessClose}>
                 <Alert onClose={handleSuccessClose} severity="success" sx={{ width: '100%' }}>
                     Login Successful!
+                </Alert>
+            </Snackbar>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={openSignout} autoHideDuration={10000} onClose={handleSignoutClose}>
+                <Alert onClose={handleSignoutClose} severity="info" sx={{ width: '100%' }}>
+                    Sign Out Successful!
                 </Alert>
             </Snackbar>
         </>
