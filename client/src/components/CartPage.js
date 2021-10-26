@@ -332,7 +332,7 @@ export default function CartPage(){
                             </StyledTotalContainer>
                         </StyledCartTotalPromoContainer>
                         <div className={classes.proceedContainer}>
-                            <h3><span className={classes.span}>{userName}</span> please proceed to confirm delivery info</h3>
+                            <h3><span className={classes.span}>{userName}</span> proceed to confirm delivery info</h3>
                             <StyledPromoButton>Proceed</StyledPromoButton> 
                         </div>
                     </>

@@ -46,9 +46,9 @@ const useStyles = makeStyles({
         }
     },
     welcomeeffects: {
-        fontSize: "1.5em",
+        fontSize: "1.08em",
         marginRight: "0.8em",
-        color: "#ffca68"
+        color: "white"
     },
     divider: {
         marginRight: "0.8em"
@@ -74,6 +74,9 @@ const useStyles = makeStyles({
     p: {
         fontSize: "1em",
         color: "black"
+    },
+    span: {
+        color: "#ffca68"
     }
 })
 
@@ -218,7 +221,7 @@ export default function LoginSignup(props){
 
                 {userName &&
                     <>
-                        <h5 className={classes.welcomeeffects}>Welcome! {userName}</h5>
+                        <h5 className={classes.welcomeeffects}>Welcome! <span className={classes.span}>{userName}</span></h5>
                         <h5 className={classes.divider}>|</h5>
                         <h5 onClick={() => logout()} className={classes.logineffects}>Sign Out</h5>
                     </>

@@ -3,7 +3,7 @@ import AfterNav from "./AfterNav"
 import Footer from "./Footer"
 import { ReactTitle } from 'react-meta-tags'
 
-/*import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 import * as React from 'react'
 import { useState, useEffect } from "react"
@@ -12,11 +12,11 @@ import MuiAlert from '@mui/material/Alert'
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-})*/
+})
 
 
 export default function HomePage(){
-    /*const location = useLocation()
+    const location = useLocation()
     //const history = useHistory()
 
     const [nowLogin, setNowLogin] = useState('')
@@ -37,7 +37,7 @@ export default function HomePage(){
             setNowLogin(location.state.detail)
             setOpen(true)
         }
-    },[location.state])*/
+    },[location.state])
 
 
     return(
@@ -46,11 +46,11 @@ export default function HomePage(){
             <Navbar />
             <AfterNav />
             <Footer />
-            {/*<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={10000} onClose={handleClose}>
+            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={10000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                     {nowLogin}
                 </Alert>
-    </Snackbar>*/}
+            </Snackbar>
         </div>
     )
 }
