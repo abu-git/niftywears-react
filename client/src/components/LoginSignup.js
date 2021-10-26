@@ -46,7 +46,7 @@ const useStyles = makeStyles({
         }
     },
     welcomeeffects: {
-        fontSize: "0.85em",
+        fontSize: "1.5em",
         marginRight: "0.8em",
         color: "#ffca68"
     },

@@ -8,7 +8,7 @@ import { ArrowBack, DeleteOutline } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 
 import { CartContext } from "../context/CartContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 
 import Footer from './Footer'
 
@@ -54,6 +54,8 @@ const StyledButton = styled('button')(({theme}) => ({
     transition: "transform 0.15s ease-in-out",
     '&:hover': {
         transform: "scale(1.2)",
+        backgroundColor: "#ffca68",
+        color: "black"
     },
     [theme.breakpoints.down('sm')]: {
         padding: "12px 17px 12px 17px",
@@ -144,8 +146,8 @@ const StyledPromoButton = styled('button')(({theme}) => ({
     transition: "transform 0.15s ease-in-out",
     '&:hover': {
         transform: "scale(1.1)",
-        borderColor: "#ffca68",
-        color: "#ffca68"
+        backgroundColor: "#ffca68",
+        color: "black"
     },
     [theme.breakpoints.down('md')]: {
         marginLeft: "1em",
@@ -221,6 +223,8 @@ const useStyles = makeStyles({
         transition: "transform 0.15s ease-in-out",
         '&:hover': {
             transform: "scale(1.2)",
+            color: "#ffca68",
+            cursor: "pointer"
         }
     },
     promotext: {
@@ -236,6 +240,10 @@ const useStyles = makeStyles({
     noItems: {
         textAlign: "center",
         margin: "7em 0"
+    },
+    span: {
+        color: "#ffca68",
+        fontSize: "1.5em"
     }
 })
 
@@ -243,6 +251,16 @@ const useStyles = makeStyles({
 export default function CartPage(){
     const classes = useStyles()
     const { cart, addCart, removeCart, total } = useContext(CartContext)
+
+    const [userName, setUserName] = useState('')
+
+    useEffect(() => {
+        if(sessionStorage.getItem('userData')){
+            let data = sessionStorage.getItem('userData')
+            data = JSON.parse(data)
+            setUserName(data.name)
+        }
+    }, [])
 
     return(
         <>
@@ -314,7 +332,7 @@ export default function CartPage(){
                             </StyledTotalContainer>
                         </StyledCartTotalPromoContainer>
                         <div className={classes.proceedContainer}>
-                            <h3>Proceed to confirm delivery info</h3>
+                            <h3><span className={classes.span}>{userName}</span> please proceed to confirm delivery info</h3>
                             <StyledPromoButton>Proceed</StyledPromoButton> 
                         </div>
                     </>
