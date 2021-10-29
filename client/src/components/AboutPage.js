@@ -66,7 +66,7 @@ const Right = styled('div')(({theme}) => ({
         fontSize: "1em"
     },
     [theme.breakpoints.down('sm')]: {
-        width: "80%",
+        width: "90%",
         fontSize: "0.7em"
     }
 }))

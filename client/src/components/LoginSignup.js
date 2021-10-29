@@ -58,6 +58,7 @@ const useStyles = makeStyles({
         color: "white",
         height: "2.8em",
         padding: "8px",
+        marginRight: "0.7em",
         borderRadius: "4px",
         cursor: "pointer",
         '&:hover': {
@@ -181,6 +182,8 @@ export default function LoginSignup(props){
         sessionStorage.clear()
         setUserName('')
         setOpenSignout(true)
+        setLoginEmail('')
+        setLoginPassword('')
     }
 
     const handleLoginOpen = () => {
@@ -198,7 +201,7 @@ export default function LoginSignup(props){
             console.log(data.name)
             setUserName(data.name)
         }
-    })
+    }, [userName])
 
 
     return(

@@ -24,7 +24,7 @@ const StyledContainer = styled('div')(({theme}) => ({
         height: "60vh",   
     },
     [theme.breakpoints.down('sm')]: {
-        height: "58vh"
+        height: "70vh"
     }
 }))
 
