@@ -110,6 +110,21 @@ const StyledTotalContainer = styled('div')(({theme}) => ({
     }
 }))
 
+const UserInfoContainer = styled('div')(({theme}) => ({
+    //border: "1px solid red",
+    marginTop: "2.4em",
+    textAlign: "center"
+}))
+
+const UserLeft = styled('div')(({theme}) => ({
+    width: "100%",
+    textAlign: "center"
+}))
+
+const UserRight = styled('div')(({theme}) => ({
+    width: "50%"
+}))
+
 const StyledInputElement = styled('input')(({theme}) => ({
     width: "200px",
     fontSize: "1rem",
@@ -245,6 +260,9 @@ const useStyles = makeStyles({
     span: {
         color: "#ffca68",
         fontSize: "1.5em"
+    },
+    deliveryFont: {
+        color: "#b6b6b8"
     }
 })
 
@@ -254,14 +272,19 @@ export default function CartPage(){
     const { cart, addCart, removeCart, total } = useContext(CartContext)
 
     const [userName, setUserName] = useState('')
+    const [userPhone, setUserPhone] = useState('')
+    const [userAddress, setUserAddress] = useState('')
 
     useEffect(() => {
         if(sessionStorage.getItem('userData')){
             let data = sessionStorage.getItem('userData')
             data = JSON.parse(data)
+            console.log(data)
             setUserName(data.name)
+            setUserPhone(data.phone)
+            setUserAddress(data.address)
         }
-    }, [])
+    }, [cart])
 
     return(
         <>
@@ -319,6 +342,7 @@ export default function CartPage(){
                 {/*----Promo Code and Total Info----*/}
                 {cart.length > 0 &&
                     <>
+                        
                         <StyledCartTotalPromoContainer>
                             <StyledPromoContainer>
                                 <p className={classes.promotext}>Have a Promo Code?</p>
@@ -332,6 +356,15 @@ export default function CartPage(){
                                 <h4 className={classes.totalH4}>Total: &#163;{total}</h4>
                             </StyledTotalContainer>
                         </StyledCartTotalPromoContainer>
+                        {userName !== '' &&
+                            <UserInfoContainer>
+                                <UserLeft>
+                                    <h4 className={classes.deliveryFont}>Delivery contact: {userPhone}</h4>
+                                    <h4 className={classes.deliveryFont}>Delivery address: {userAddress}</h4>
+                                </UserLeft>
+                                
+                            </UserInfoContainer>
+                        }
                         <div className={classes.proceedContainer}>
                             <h3><span className={classes.span}>{userName}</span> proceed to confirm delivery info</h3>
                             <Link to="/cart-confirm"><StyledPromoButton>Proceed</StyledPromoButton></Link> 
