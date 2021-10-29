@@ -4,6 +4,9 @@ import { styled } from '@mui/material/styles'
 import  { makeStyles } from '@mui/styles'
 import { Link } from 'react-router-dom'
 
+import { Dialog, DialogActions, DialogContent } from '@mui/material'
+import { DialogTitle, TextField } from '@mui/material'
+
 import { ArrowBack, DeleteOutline } from "@mui/icons-material"
 import Logo from "../assets/assets/favicon_io/favicon-32x32.png"
 
@@ -112,7 +115,7 @@ const StyledTotalContainer = styled('div')(({theme}) => ({
 
 const UserInfoContainer = styled('div')(({theme}) => ({
     //border: "1px solid red",
-    marginTop: "2.4em",
+    marginTop: "2em",
     textAlign: "center"
 }))
 
@@ -263,6 +266,25 @@ const useStyles = makeStyles({
     },
     deliveryFont: {
         color: "#b6b6b8"
+    },
+    dialogColor: {
+        backgroundColor: "#ffca68"
+    },
+    button: {
+        backgroundColor: "black",
+        color: "white",
+        height: "2.8em",
+        padding: "8px",
+        marginRight: "0.7em",
+        borderRadius: "4px",
+        cursor: "pointer",
+        '&:hover': {
+            transform: "scale(1.1)"
+        }
+    },
+    h4: {
+        margin: 0,
+        padding: 0
     }
 })
 
@@ -274,6 +296,27 @@ export default function CartPage(){
     const [userName, setUserName] = useState('')
     const [userPhone, setUserPhone] = useState('')
     const [userAddress, setUserAddress] = useState('')
+    const [phoneHelper, setPhoneHelper] = useState('')
+    const [addressHelper, setAddressHelper] = useState('')
+
+    const [newPhone, setNewPhone] = useState('')
+    const [newAddress, setNewAddress] = useState('')
+
+    const [openChangeInfo, setOpenChangeInfo] = useState(false)
+
+    const handleChangeInfoClose = () => {
+        setOpenChangeInfo(false)
+    }
+
+    const handleChangeInfoOpen = () => {
+        setOpenChangeInfo(true)
+    }
+
+    const handleChangeSubmit = (e) => {
+        e.preventDefault()
+        setUserPhone(newPhone)
+        setUserAddress(newAddress)
+    }
 
     useEffect(() => {
         if(sessionStorage.getItem('userData')){
@@ -284,7 +327,7 @@ export default function CartPage(){
             setUserPhone(data.phone)
             setUserAddress(data.address)
         }
-    }, [cart])
+    }, [cart, userPhone, userAddress, newPhone, newAddress])
 
     return(
         <>
@@ -356,6 +399,8 @@ export default function CartPage(){
                                 <h4 className={classes.totalH4}>Total: &#163;{total}</h4>
                             </StyledTotalContainer>
                         </StyledCartTotalPromoContainer>
+
+                        {/*------ User Delivery info display--------*/}
                         {userName !== '' &&
                             <UserInfoContainer>
                                 <UserLeft>
@@ -365,8 +410,11 @@ export default function CartPage(){
                                 
                             </UserInfoContainer>
                         }
+
+                        {/*--- proceed button----*/}
                         <div className={classes.proceedContainer}>
                             <h3><span className={classes.span}>{userName}</span> proceed to confirm delivery info</h3>
+                            <StyledPromoButton onClick={handleChangeInfoOpen}>Change Delivery Info</StyledPromoButton>
                             <Link to="/cart-confirm"><StyledPromoButton>Proceed</StyledPromoButton></Link> 
                         </div>
                     </>
@@ -381,6 +429,52 @@ export default function CartPage(){
                 }
             </Container>
             <Footer />
+
+            {/* Change Delivery Dialog */}    
+            <Dialog open={openChangeInfo} onClose={handleChangeInfoClose}>
+                <div className={classes.dialogColor}>
+                    <DialogTitle>
+                        <h3>Change Delivery Information for this delivery</h3>
+                    </DialogTitle>
+                    <form onSubmit={handleChangeSubmit}>
+                        <DialogContent>
+                            <TextField 
+                                focused
+                                id="phone"
+                                label="phone number"
+                                type="text"
+                                margin="dense"
+                                variant="outlined"
+                                size="small"
+                                value={newPhone}
+                                helperText={phoneHelper}
+                                onInput={(e) => {setNewPhone(e.target.value); setPhoneHelper('')}}
+                                fullWidth
+                            />
+                            <TextField 
+                                id="address"
+                                label="delivery address"
+                                type="text"
+                                margin="dense"
+                                multiline
+                                rows={3}
+                                variant="outlined"
+                                size="small"
+                                value={newAddress}
+                                helperText={addressHelper}
+                                onInput={(e) => {setNewAddress(e.target.value); setAddressHelper('')}}
+                                fullWidth
+                            />                   
+                        </DialogContent>
+                        <DialogActions>
+                            <button onClick={handleChangeInfoClose} className={classes.button}>
+                                <h4 className={classes.h4}>Cancel</h4>
+                            </button>
+                            <input className={classes.button} type="submit" value="Confirm"/>
+                        </DialogActions>
+                    </form>
+                </div>
+            </Dialog>
         </>
     )
 }
